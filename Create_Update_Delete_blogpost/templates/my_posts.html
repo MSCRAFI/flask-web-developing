@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block head %}
+    
+
+
+
+        <div class="container list-group my-3">
+            {% if posts|length == 0 %}
+            <div class="alert alert-warning" role="alert">
+                You didn't have any posts. <a href="/create-post" class="alert-link">Create one.</a>
+              </div>
+            {% endif %}
+
+
+            {% for post in posts %}
+            <ul class="list-group list-group-horizontal justify-content-center my-1">
+                <div class="container list-group">
+                    <li class="list-group-item">
+                        <a href="/post/{{'-'.join(post.post_title.split(' '))}}"
+                            class="list-group-item list-group-item-action list-group-item-success">({{loop.index}})
+                            {{post.post_title}}
+                            <a href="/edit-posts/{{'-'.join(post.post_title.split(' '))}}">Edit</a>
+                        </a>
+                    </li>
+                </div>
+                <div class="list-group">
+                    <li class="list-group-item">
+                        <a href="/delete/{{'-'.join(post.post_title.split(' '))}}" type="button" class="btn btn-outline-danger">Delete</a>
+                </div>
+                </li>
+            </ul>
+
+            {% endfor %}
+        </div>
+        {% endblock head %}

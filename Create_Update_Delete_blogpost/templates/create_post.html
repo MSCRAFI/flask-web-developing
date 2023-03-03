@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block head %}
+
+  <body>
+    <div class="container my-3">
+        <form action="/create-post/post" method="POST">
+            <h3>Create New Post</h3>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Title</label>
+                <input type="text" class="form-control" name="title" id="exampleFormControlInput1" placeholder="My Tasks" maxlength="75">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Post</label>
+                <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3" placeholder="My Description"></textarea>
+            </div>
+            <button type="submit" class="btn btn-outline-dark">Create Post</button>
+        </form>
+    </div>
+    {% endblock head %}
