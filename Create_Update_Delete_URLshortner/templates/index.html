@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container my-3">
+    <form action="/create" method="POST">
+        <h3>Short your URL</h3>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Website Link</label>
+            <input type="url" class="form-control" name="url" id="exampleFormControlInput1" placeholder="https://example.com">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Url Title</label>
+            <input class="form-control" name="title" id="exampleFormControlTextarea1" rows="3"
+                placeholder="This is an example site"></input>
+        </div>
+        <button type="submit" class="btn btn-outline-dark">Short URL</button>
+    </form>
+</div>
+
+
+
+<div class="container my-3">
+    {% if alldata|length == 0 %}
+    <h3>Your Short Urls</h3>
+    <div class="alert alert-warning" role="alert">
+        Your Short Url list is empty!! Please create a url first.
+    </div>
+{% else %}
+    
+
+
+    
+    
+    <table class="table">
+        <thead>
+            
+            <tr>
+                <th scope="col">Serial</th>
+                <th scope="col">Short URL</th>
+                <th scope="col">Base URL</th>
+                <th scope="col">Title</th>
+                <th scope="col">Update/Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in alldata %}
+            <tr>
+                <th scope="row">{{loop.index}}</th>
+                <td><a href="{{site_url}}{{data.short_url}}">{{site_url}}{{data.short_url}}</a></td>
+                <td><a href="{{data.web_url}}">{{data.web_url}}</a></td>
+                <td>{{data.url_title}}</td>
+                <td>
+                    <a href="/update/{{data.short_url}}" type="button" class="btn btn-outline-success">Update</a>
+                    <a href="/delete/{{data.short_url}}" type="button" class="btn btn-outline-danger">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+    {% endif %}
+
+</div>
+{% endblock body %}
